@@ -20,7 +20,7 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmptyQuestions = questions.filter(
         (question: Question): boolean =>
-            question.body !== "" && question.options.length !== 0,
+            question.body !== "" && question.options.length === 0,
     );
     return nonEmptyQuestions;
 }
@@ -33,7 +33,14 @@ export function findQuestion(
     questions: Question[],
     id: number,
 ): Question | null {
-    return null;
+    const question = questions.find(
+        (question: Question): boolean => question.id === id,
+    );
+    if (question) {
+        return question;
+    } else {
+        return null;
+    }
 }
 
 /**
