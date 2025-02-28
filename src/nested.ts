@@ -219,7 +219,22 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    const newQuestions = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
+    );
+    const targetIdIndex = newQuestions.findIndex(
+        (question: Question): boolean => question.id === targetId,
+    );
+    console.log(newQuestions[targetIdIndex]);
+    if (targetOptionIndex === -1) {
+        newQuestions[targetIdIndex].options.push(newOption);
+    } else {
+        newQuestions[targetIdIndex].options[targetOptionIndex] = newOption;
+    }
+    return newQuestions;
 }
 
 /***
