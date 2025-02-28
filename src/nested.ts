@@ -122,6 +122,9 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
+    const allPublished = questions.map(
+        (question: Question): boolean => (question.published = false),
+    );
     return [];
 }
 
@@ -130,7 +133,10 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const sameType = questions.every(
+        (question: Question): boolean => question.type === questions[1].type,
+    );
+    return sameType;
 }
 
 /***
