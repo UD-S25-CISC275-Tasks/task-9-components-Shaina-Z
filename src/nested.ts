@@ -20,7 +20,10 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmptyQuestions = questions.filter(
-        (question: Question): boolean => question.options.length === 0,
+        (question: Question): boolean =>
+            question.body !== "" &&
+            question.options.length !== 0 &&
+            question.expected !== "",
     );
     return nonEmptyQuestions;
 }
@@ -124,9 +127,9 @@ export function makeAnswers(questions: Question[]): Answer[] {
  */
 export function publishAll(questions: Question[]): Question[] {
     const allPublished = questions.map(
-        (question: Question): boolean => (question.published = false),
+        (question: Question): Question => ({ ...question, published: true }),
     );
-    return [];
+    return allPublished;
 }
 
 /***
@@ -228,7 +231,6 @@ export function editOption(
     const targetIdIndex = newQuestions.findIndex(
         (question: Question): boolean => question.id === targetId,
     );
-    console.log(newQuestions[targetIdIndex]);
     if (targetOptionIndex === -1) {
         newQuestions[targetIdIndex].options.push(newOption);
     } else {
