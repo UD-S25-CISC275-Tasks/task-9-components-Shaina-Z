@@ -19,8 +19,7 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmptyQuestions = questions.filter(
-        (question: Question): boolean =>
-            question.body !== "" && question.options.length === 0,
+        (question: Question): boolean => question.options.length === 0,
     );
     return nonEmptyQuestions;
 }
@@ -59,7 +58,10 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const justNames = questions.map(
+        (question: Question): string => question.name,
+    );
+    return justNames;
 }
 
 /***
