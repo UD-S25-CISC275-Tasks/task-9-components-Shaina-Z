@@ -151,7 +151,9 @@ export function addNewQuestion(
     name: string,
     type: QuestionType,
 ): Question[] {
-    const newQuestions = { ...questions };
+    const newQuestions = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
     newQuestions.push(makeBlankQuestion(id, name, type));
     return newQuestions;
 }
