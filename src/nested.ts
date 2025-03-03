@@ -8,7 +8,7 @@ import { makeBlankQuestion, duplicateQuestion } from "./objects";
  */
 export function getPublishedQuestions(questions: Question[]): Question[] {
     const publishedQuestions = questions.filter(
-        (question: Question): boolean => question.published === true,
+        (question: Question): boolean => question.published,
     );
     return publishedQuestions;
 }
@@ -21,9 +21,9 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const nonEmptyQuestions = questions.filter(
         (question: Question): boolean =>
-            question.body !== "" &&
+            question.body.length !== 0 &&
             question.options.length !== 0 &&
-            question.expected !== "",
+            question.expected.length !== 0,
     );
     return nonEmptyQuestions;
 }
