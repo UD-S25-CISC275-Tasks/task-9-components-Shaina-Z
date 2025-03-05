@@ -8,7 +8,7 @@ export function RevealAnswer(): React.JSX.Element {
     setVisible(!visible);
   }
 
-  // Only includes <div>Hello!</div> if `visible` is true
+  
   return <div>
     <Button onClick={flipVisibility}>Reveal Answer</Button>
     {visible && <div>42</div>}  
