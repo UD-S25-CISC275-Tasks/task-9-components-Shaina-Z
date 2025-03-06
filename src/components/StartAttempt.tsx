@@ -4,6 +4,10 @@ import { Button } from "react-bootstrap";
 export function StartAttempt(): React.JSX.Element {
     const [attempts, setValue] = useState<number>(4);
     const [inProgress, setProgress] = useState<boolean>(false);
+    function startQuiz() {
+        setProgress(true);
+        setValue(attempts - 1);
+    }
 
     return (
         <>
@@ -18,8 +22,8 @@ export function StartAttempt(): React.JSX.Element {
                 </span>
                 <span>
                     <Button
-                        onClick={() => setProgress(true)}
-                        disabled={inProgress || attempts < 0}
+                        onClick={startQuiz}
+                        disabled={inProgress || attempts <= 0}
                     >
                         Start Quiz
                     </Button>
