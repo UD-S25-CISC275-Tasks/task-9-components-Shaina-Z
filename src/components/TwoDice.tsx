@@ -28,7 +28,7 @@ export function TwoDice(): React.JSX.Element {
                         <div>Win</div>
                     ))}{" "}
             </span>
-            <span data-testid="left-die">Left Die: {leftDie}</span>
+            <span data-testid="left-die">Left Die: {leftDie} </span>
             <span data-testid="right-die">Right Die: {rightDie}</span>
         </>
     );
